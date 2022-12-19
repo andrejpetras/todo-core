@@ -4,7 +4,7 @@
 
     <groupId>com.github.andrejpetras</groupId>
     <artifactId>todo-core</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>999-SNAPSHOT</version>
 
     <properties>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
