@@ -12,4 +12,6 @@ public class Todo extends PanacheEntityBase {
     public String id;
 
     public String text;
+
+    public boolean complete;
 }

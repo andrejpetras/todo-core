@@ -2,6 +2,7 @@ package com.github.andrejpetras.todo.core.rs;
 
 import com.github.andrejpetras.todo.core.dao.Todo;
 
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,10 +20,12 @@ public class TodoRestController {
     }
 
     @POST
+    @Transactional
     public Response create(String text) {
         Todo t = new Todo();
         t.id = UUID.randomUUID().toString();
         t.text = text;
+        t.complete = false;
         t.persistAndFlush();
         return Response.ok(t.id).build();
     }
