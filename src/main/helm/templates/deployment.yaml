@@ -4,6 +4,7 @@ metadata:
   name: {{ .Release.Name }}-{{ .Chart.Name }}
   labels:
     app: {{ .Release.Name }}-{{ .Chart.Name }}
+    app-version: {{ .Chart.Version }}
 spec:
   replicas: {{ .Values.replicas }}
   selector:
@@ -45,3 +46,9 @@ spec:
               value: {{ .Values.config.health.liveness | quote }}
             - name: APP_CONFIG_HEALTH_READINESS
               value: {{ .Values.config.health.readiness | quote }}
+          {{- if .Values.env }}
+          {{- range $key,$val := .Values.env }}
+            - name: {{ $key }}
+              value: {{ tpl ($val|toString) $ | quote }}
+          {{- end }}
+          {{- end }}
